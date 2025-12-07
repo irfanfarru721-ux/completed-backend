@@ -26,11 +26,22 @@ router.post("/", async (req, res) => {
   }
 });
 
-// 🚀 *** GET PRODUCTS BY VENDOR ***
+// 🚀 GET PRODUCTS BY VENDOR
 router.get("/vendor/:vendorId", async (req, res) => {
   try {
     const { vendorId } = req.params;
     const products = await Product.find({ vendorId });
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// 🚀 *** GET PRODUCTS BY CATEGORY (ADDED NOW) ***
+router.get("/category/:categoryId", async (req, res) => {
+  try {
+    const { categoryId } = req.params;
+    const products = await Product.find({ categoryId });
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: error.message });
