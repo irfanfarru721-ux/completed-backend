@@ -4,6 +4,10 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import userRoutes from "./routes/users.js";
+import moduleRoutes from "./routes/modules.js";
+import vendorRoutes from "./routes/vendors.js";
+import categoryRoutes from "./routes/categories.js";
+import productRoutes from "./routes/products.js";
 import adminAuthRoutes from "./routes/admin/auth.js";
 import adminModuleRoutes from "./routes/admin/modules.js";
 import adminVendorRoutes from "./routes/admin/vendors.js";
@@ -51,6 +55,10 @@ mongoose
 // User routes
 app.use("/api/users", userRoutes);
 app.use("/api/products", userProductRoutes);
+app.use("/api/modules", moduleRoutes);
+app.use("/api/vendors", vendorRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/products", productRoutes);
 
 // -------------------- ADMIN ROUTES --------------------
 app.use("/api/admin/auth", adminAuthRoutes);
