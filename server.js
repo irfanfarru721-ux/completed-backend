@@ -10,6 +10,7 @@ import adminVendorRoutes from "./routes/admin/vendors.js";
 import adminCategoryRoutes from "./routes/admin/categories.js";
 import adminProductRoutes from "./routes/admin/products.js";
 import adminUserRoutes from "./routes/admin/users.js";
+import userProductRoutes from "./routes/products.js";
 
 dotenv.config();
 const app = express();
@@ -49,6 +50,7 @@ mongoose
 
 // User routes
 app.use("/api/users", userRoutes);
+app.use("/api/products", userProductRoutes);
 
 // -------------------- ADMIN ROUTES --------------------
 app.use("/api/admin/auth", adminAuthRoutes);
