@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 
-import userRoutes from "./routes/admin/users.js";
+import userRoutes from "./routes/users.js";
 import adminAuthRoutes from "./routes/admin/auth.js";
 import adminModuleRoutes from "./routes/admin/modules.js";
 import adminVendorRoutes from "./routes/admin/vendors.js";
