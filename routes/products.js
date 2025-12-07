@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// 🚀 GET PRODUCTS BY VENDOR
+// 🚀 *** GET PRODUCTS BY VENDOR ***
 router.get("/vendor/:vendorId", async (req, res) => {
   try {
     const { vendorId } = req.params;
