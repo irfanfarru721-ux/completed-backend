@@ -19,6 +19,7 @@ app.use(
   cors({
     origin: [
       "https://frontend-admin-lhhq.onrender.com",
+      "https://frontend-frontend-wcvf.onrender.com",
       "http://localhost:5173",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
