@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// 🚀 *** GET PRODUCTS BY VENDOR ***
+// 🚀 GET PRODUCTS BY VENDOR
 router.get("/vendor/:vendorId", async (req, res) => {
   try {
     const { vendorId } = req.params;
@@ -37,11 +37,14 @@ router.get("/vendor/:vendorId", async (req, res) => {
   }
 });
 
-// 🚀 *** GET PRODUCTS BY CATEGORY (ADDED NOW) ***
+// 🚀 GET PRODUCTS BY CATEGORY
 router.get("/category/:categoryId", async (req, res) => {
   try {
     const { categoryId } = req.params;
-    const products = await Product.find({ categoryId });
+    const products = await Product.find({ categoryId })
+      .populate("vendorId", "name")
+      .populate("categoryId", "name");
+
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: error.message });
