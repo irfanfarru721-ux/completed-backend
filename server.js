@@ -26,6 +26,7 @@ app.use(
     origin: [
       "https://frontend-admin-lhhq.onrender.com",
       "https://frontend-frontend-wcvf.onrender.com",
+      "https://new-frontend-snll.onrender.com",
       "http://localhost:5173",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
