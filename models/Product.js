@@ -1,10 +1,13 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+
 const productSchema = new mongoose.Schema({
-  vendorId: { type: mongoose.Schema.Types.ObjectId, ref: 'Vendor', required: true },
-  categoryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
   name: { type: String, required: true },
-  image: { type: String, required: false },
-  price: { type: Number, required: true },
-  description: { type: String }
-});
-export default mongoose.model('Product', productSchema);
+  vendorId: { type: mongoose.Schema.Types.ObjectId, ref: "Vendor" },
+  categoryId: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
+  price: Number,
+  stock: Number,
+  image: String,
+  description: String,
+}, { timestamps: true });
+
+export default mongoose.model("Product", productSchema);
