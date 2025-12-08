@@ -10,7 +10,7 @@ import {
   updateProduct,
   deleteProduct,
   getVendorProductsGroupedByCategory,
-} from "../controllers/productController.js";
+} from "../controllers/products.js";
 
 const router = express.Router();
 
