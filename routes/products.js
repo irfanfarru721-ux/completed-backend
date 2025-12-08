@@ -1,64 +1,9 @@
-import express from "express";
-import Product from "../models/Product.js";
-
-const router = express.Router();
-
-// List all products
-router.get("/", async (req, res) => {
-  try {
-    const products = await Product.find()
-      .populate("vendorId")
-      .populate("categoryId");
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// Create product
-router.post("/", async (req, res) => {
-  try {
-    const product = new Product(req.body);
-    await product.save();
-    res.json(product);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// 🚀 GET PRODUCTS BY VENDOR
-router.get("/vendor/:vendorId", async (req, res) => {
-  try {
-    const { vendorId } = req.params;
-    const products = await Product.find({ vendorId });
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// 🚀 GET PRODUCTS BY CATEGORY
-router.get("/category/:categoryId", async (req, res) => {
-  try {
-    const { categoryId } = req.params;
-    const products = await Product.find({ categoryId })
-      .populate("vendorId", "name")
-      .populate("categoryId", "name");
-
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 // GET products by vendor AND category
 router.get("/vendor/:vendorId/category/:categoryId", async (req, res) => {
   try {
     const { vendorId, categoryId } = req.params;
 
-    const products = await Product.find({
-      vendorId,
-      categoryId,
-    })
+    const products = await Product.find({ vendorId, categoryId })
       .populate("vendorId", "name")
       .populate("categoryId", "name");
 
@@ -68,6 +13,3 @@ router.get("/vendor/:vendorId/category/:categoryId", async (req, res) => {
     res.status(500).json({ message: "Error fetching products by vendor and category" });
   }
 });
-
-
-export default router;
