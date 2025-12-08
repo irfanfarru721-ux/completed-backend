@@ -1,33 +1,20 @@
 import express from "express";
-import Product from "../models/Product.js";
+import {
+  getProductsByCategory,
+  getAllProducts,
+  createProduct,
+  deleteProduct,
+  getProductById
+} from "../controllers/productController.js";
 
 const router = express.Router();
 
-// List all products
-router.get("/", async (req, res) => {
-  const products = await Product.find().populate("vendorId").populate("categoryId");
-  res.json(products);
-});
+// ⭐ FIXED route
+router.get("/category/:categoryId", getProductsByCategory);
 
-// GET products by vendor
-router.get("/vendor/:vendorId", async (req, res) => {
-  const { vendorId } = req.params;
-  const products = await Product.find({ vendorId }).populate("vendorId").populate("categoryId");
-  res.json(products);
-});
-
-// GET products by category
-router.get("/category/:categoryId", async (req, res) => {
-  const { categoryId } = req.params;
-  const products = await Product.find({ categoryId }).populate("vendorId", "name").populate("categoryId", "name");
-  res.json(products);
-});
-
-// GET products by vendor AND category
-router.get("/vendor/:vendorId/category/:categoryId", async (req, res) => {
-  const { vendorId, categoryId } = req.params;
-  const products = await Product.find({ vendorId, categoryId }).populate("vendorId", "name").populate("categoryId", "name");
-  res.json(products);
-});
+router.get("/", getAllProducts);
+router.get("/:id", getProductById);
+router.post("/", createProduct);
+router.delete("/:id", deleteProduct);
 
 export default router;
