@@ -7,19 +7,20 @@ import userRoutes from "./routes/users.js";
 import moduleRoutes from "./routes/modules.js";
 import vendorRoutes from "./routes/vendors.js";
 import categoryRoutes from "./routes/categories.js";
-import productRoutes from "./routes/products.js";
+import productRoutes from "./routes/products.js";   // user product routes
+
+// Admin Routes
 import adminAuthRoutes from "./routes/admin/auth.js";
 import adminModuleRoutes from "./routes/admin/modules.js";
 import adminVendorRoutes from "./routes/admin/vendors.js";
 import adminCategoryRoutes from "./routes/admin/categories.js";
 import adminProductRoutes from "./routes/admin/products.js";
 import adminUserRoutes from "./routes/admin/users.js";
-import userProductRoutes from "./routes/products.js";
 
 dotenv.config();
 const app = express();
 
-// -------------------- CORS FIX --------------------
+// -------------------- CORS --------------------
 app.use(
   cors({
     origin: [
@@ -52,13 +53,12 @@ mongoose
     process.exit(1);
   });
 
-// User routes
+// -------------------- USER ROUTES --------------------
 app.use("/api/users", userRoutes);
-app.use("/api/products", userProductRoutes);
+app.use("/api/products", productRoutes);   // User product routes
 app.use("/api/modules", moduleRoutes);
 app.use("/api/vendors", vendorRoutes);
 app.use("/api/categories", categoryRoutes);
-app.use("/api/products", productRoutes);
 
 // -------------------- ADMIN ROUTES --------------------
 app.use("/api/admin/auth", adminAuthRoutes);
